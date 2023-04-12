@@ -137,31 +137,19 @@ class LeadController extends Controller
     {
         // echo json_encode("map");
 
-        $email = 'jonathancastro@opengiscrm.com';  
-        
-
-        // $query = "SELECT c.id_country,c.country,c.lat,c.long FROM users as u     
-        // left join users_leads as ul on u.id_user = ul.id_user
-        // left join leads as l on l.id_lead = ul.id_lead
-        // left join countrys as c on l.id_country = c.id_country      
-        // where u.email = '{$email}'";
+        $email = 'jonathancastro@opengiscrm.com';
+      
 
         $data = (new \yii\db\Query())
         ->select(['c.id_country', 'c.country', 'c.lat', 'c.long'])
+         // ->select(['*'])
         // ->from(['users', 'as u'])
          ->from('users as u ')
-        ->leftJoin('users_leads as ul', '`users`.`u.id_user` = `users_leads`.`ul.id_user`') 
-        ->leftJoin('leads as l', '`leads`.`l.id_lead` = `users_leads`.`ul.id_lead`')
-        ->leftJoin('countrys as c', '`leads`.`l.id_country` = `countrys`.`c.id_country `')
+        ->leftJoin('users_leads as ul', '`u`.`id_user` = `ul`.`id_user`') 
+        ->leftJoin('leads as l', '`l`.`id_lead` = `ul`.`id_lead`')
+        ->leftJoin('countrys as c', '`l`.`id_country` = `c`.`id_country`')
         ->where(['u.email' => $email])
         ->all();
-
-        // $customers = Customer::find()
-        // ->select('customer.*')
-        // ->leftJoin('order', '`order`.`customer_id` = `customer`.`id`')
-        // ->where(['order.status' => Order::STATUS_ACTIVE])
-        // ->with('orders')
-        // ->all();
 
         return $this->asJson($data);
     }
