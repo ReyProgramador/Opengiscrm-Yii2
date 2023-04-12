@@ -131,4 +131,26 @@ class LeadController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+
+    public function actionMap()
+    {
+        // echo json_encode("map");
+
+        $email = 'jonathancastro@opengiscrm.com';
+      
+
+        $data = (new \yii\db\Query())
+        ->select(['c.id_country', 'c.country', 'c.lat', 'c.long'])
+         // ->select(['*'])
+        // ->from(['users', 'as u'])
+         ->from('users as u ')
+        ->leftJoin('users_leads as ul', '`u`.`id_user` = `ul`.`id_user`') 
+        ->leftJoin('leads as l', '`l`.`id_lead` = `ul`.`id_lead`')
+        ->leftJoin('countrys as c', '`l`.`id_country` = `c`.`id_country`')
+        ->where(['u.email' => $email])
+        ->all();
+
+        return $this->asJson($data);
+    }
 }
