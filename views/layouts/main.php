@@ -41,7 +41,10 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         'items' => [
             // ['label' => 'Home', 'url' => ['/site/index']],
             // ['label' => 'About', 'url' => ['/site/about']],
-            // ['label' => 'Contact', 'url' => ['/site/contact']],
+            // ['label' => 'Contact', 'url' => ['/site/contact']],            
+            ['label' => 'Dashboard', 'url' => ['/dashboard/index']],
+            ['label' => 'Users', 'url' => ['/user/index']],
+            ['label' => 'Leads', 'url' => ['/lead/index']],
             Yii::$app->user->isGuest
                 ? ['label' => 'Login', 'url' => ['/site/login']]
                 : '<li class="nav-item">'
@@ -56,6 +59,10 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
     ]);
     NavBar::end();
     ?>
+
+    
+
+
 </header>
 
 <main id="main" class="flex-shrink-0" role="main">

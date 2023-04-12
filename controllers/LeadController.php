@@ -131,4 +131,12 @@ class LeadController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+
+    public function actionMap()
+    {
+        // echo json_encode("map");
+
+        return $this->asJson("data");
+    }
 }

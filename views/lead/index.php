@@ -21,6 +21,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create Lead', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
+     <div class="col-8">  
+      <div id="mapid" style="width: 100%;height: 480px;box-shadow: 5px 5px 5px #888;"></div>
+    </div>
+    <hr>
+
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
